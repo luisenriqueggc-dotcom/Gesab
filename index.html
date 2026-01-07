@@ -3,93 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gesab | Avance de proyectos</title>
+  <title>Gesab · Avance de proyectos</title>
+
+  <!-- Tipografía elegante y limpia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b0d12;
-      --card:#121725;
-      --text:#e8ecff;
-      --muted:#a9b1d6;
-      --border:rgba(255,255,255,.08);
-      --accent:#7c5cff;
+      --bg: #f6f7fb;
+      --surface: rgba(255,255,255,.78);
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: rgba(15, 23, 42, .10);
+      --shadow: 0 24px 60px rgba(15, 23, 42, .10);
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, .08);
+      --accent: #2563eb;
     }
-    *{box-sizing:border-box}
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(124,92,255,.25), transparent 55%),
-                  radial-gradient(900px 500px at 90% 20%, rgba(51,214,255,.18), transparent 60%),
-                  var(--bg);
-      color:var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 15% 0%, rgba(37,99,235,.10), transparent 55%),
+        radial-gradient(700px 420px at 90% 10%, rgba(99,102,241,.08), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 60%, #eef2ff 100%);
     }
-    .wrap{max-width:1100px;margin:0 auto;padding:48px 20px 24px}
-    .top{
-      display:flex; gap:16px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap;
-      margin-bottom:18px;
+
+    .wrap{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 20px 28px;
     }
-    h1{margin:0;font-size:28px;letter-spacing:.2px}
-    p{margin:6px 0 0;color:var(--muted);line-height:1.4}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      background:rgba(124,92,255,.14);
-      border:1px solid rgba(124,92,255,.35);
-      color:var(--text);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:13px;
+
+    /* Header minimal */
+    .header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
-    .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(124,92,255,.9)}
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border:1px solid var(--border);
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width: 240px;
     }
-    .frame-wrap{position:relative; width:100%; height:min(78vh, 760px);}
-    iframe{
-      width:100%; height:100%;
-      border:0;
-      background:white;
+
+    h1{
+      margin:0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
-    .footer{
-      display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-      margin-top:14px; color:var(--muted); font-size:12px;
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
     }
-    a{color:var(--text); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.18)}
-    a:hover{border-bottom-color:rgba(255,255,255,.55)}
-    .btn{
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:13px;
-      display:inline-flex;
-      gap:8px;
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
       align-items:center;
     }
-    .btn:hover{background:rgba(255,255,255,.07)}
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      color: var(--muted);
+      box-shadow: var(--shadow-soft);
+    }
+    .chip .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,.15);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      text-decoration:none;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-soft);
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
+    }
+    .btn .icon{
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--text);
+      border-left: 0;
+      border-bottom: 0;
+      transform: rotate(45deg);
+      opacity: .7;
+    }
+
+    /* Card */
+    .card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    /* Top bar inside card */
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(15, 23, 42, .08);
+      background: linear-gradient(180deg, rgba(248,250,252,.95), rgba(255,255,255,1));
+    }
+    .card-top .left{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      min-width: 240px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(37,99,235,.08);
+      border: 1px solid rgba(37,99,235,.20);
+      color: rgba(37,99,235,.95);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .badge .bar{
+      width: 10px;
+      height: 10px;
+      border-radius: 4px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .frame-wrap{
+      height: min(78vh, 760px);
+      background: #fff;
+    }
+    iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: white;
+    }
+
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Responsive: reduce heights a bit on small screens */
+    @media (max-width: 680px){
+      .wrap{ padding: 28px 14px 22px; }
+      .frame-wrap{ height: min(70vh, 680px); }
+      h1{ font-size: 20px; }
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="top">
-      <div>
+    <div class="header">
+      <div class="title">
         <h1>Gesab · Avance de proyectos</h1>
-        <p>Vista en tiempo real desde Google Sheets (solo lectura).</p>
+        <p class="sub">Panel de seguimiento (solo lectura) conectado a Google Sheets.</p>
       </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-        <span class="pill"><span class="dot"></span> Actualiza automático</span>
-        <a class="btn" id="openSheet" href="#" target="_blank" rel="noreferrer">Abrir en Google Sheets ↗</a>
+
+      <div class="actions">
+        <div class="chip" title="Se refresca automáticamente">
+          <span class="dot"></span>
+          <span>Actualiza automático</span>
+        </div>
+        <a class="btn" id="openSheet" href="#" target="_blank" rel="noreferrer">
+          Abrir en Google Sheets <span class="icon" aria-hidden="true"></span>
+        </a>
       </div>
     </div>
 
     <div class="card">
+      <div class="card-top">
+        <div class="left">
+          <span class="badge"><span class="bar"></span> Proyectos en curso</span>
+          <span class="meta">Última actualización: <strong id="updatedAt">—</strong></span>
+        </div>
+        <span class="meta">Gesab · Reporte interno</span>
+      </div>
+
       <div class="frame-wrap">
-        <!-- 1) Pega aquí tu URL de "Publicar en la web" (pubhtml) -->
+        <!-- Pega tu URL aquí.
+             TIP: prueba agregando &widget=true&headers=false para ocultar barras (a veces funciona según la publicación). -->
         <iframe
           id="sheetFrame"
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQiOtugleXTQ3Pb4l83llG4gdEk2Ioazh5jFBhGjm5iDWo6J6CCuO0wFpJBv2jru6auy4UP_9OTwCgL/pubhtml?gid=0&single=true"
+          src="PASTE_YOUR_PUBLISHED_SHEET_URL_HERE"
           loading="lazy"
           referrerpolicy="no-referrer"
         ></iframe>
@@ -97,29 +252,47 @@
     </div>
 
     <div class="footer">
-      <span>Última actualización: <span id="updatedAt">—</span></span>
+      <span>Tip: publica la hoja como “Publicar en la web” para evitar login.</span>
       <span>Hecho por Luis · desplegado en Vercel</span>
     </div>
   </div>
 
   <script>
-    // Opcional: refrescar iframe cada X minutos para “simular” live
     const REFRESH_MINUTES = 5;
 
     const frame = document.getElementById("sheetFrame");
     const openSheet = document.getElementById("openSheet");
     const updatedAt = document.getElementById("updatedAt");
 
+    // Si quieres “limpiar” el embed un poco, intenta:
+    // - widget=true
+    // - headers=false
+    // - chrome=false (no siempre aplica)
+    // Nota: depende del modo de publicación de Google Sheets
+    function normalizePublishedUrl(url){
+      try{
+        const u = new URL(url);
+        u.searchParams.set("widget", "true");
+        u.searchParams.set("headers", "false");
+        return u.toString();
+      } catch(e){
+        return url;
+      }
+    }
+
+    // Si ya pegaste la URL, la normalizamos
+    frame.src = normalizePublishedUrl(frame.src);
+
+    // Botón: abre el mismo link del embed (si quieres el docs.google normal, cámbialo manual)
+    openSheet.href = frame.src;
+
     function setUpdatedAt(){
       const d = new Date();
       updatedAt.textContent = d.toLocaleString("es-MX", { dateStyle:"medium", timeStyle:"short" });
     }
 
-    // Si tu URL publicada es /pubhtml, esto abre esa vista en una pestaña.
-    // Si prefieres abrir el Sheet "normal" (docs.google.com/spreadsheets/d/...), cambia el href.
-    openSheet.href = frame.src;
-
     setUpdatedAt();
+
     setInterval(() => {
       const url = new URL(frame.src);
       url.searchParams.set("_t", Date.now()); // cache buster
@@ -129,3 +302,4 @@
   </script>
 </body>
 </html>
+
